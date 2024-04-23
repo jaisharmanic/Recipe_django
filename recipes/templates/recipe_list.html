@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Recipe List</title>
+    <style>
+        /* Fonts */
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+        /* Global styling */
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+
+        /* Navbar styling */
+        .navbar {
+            background-color: #343a40;
+            padding: 15px 0;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .navbar h1 {
+            margin: 0;
+            color: #ffffff;
+            font-size: 24px;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        /* Container styling */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Recipe card styling */
+        .recipe-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        .recipe-card {
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            transition: transform 0.3s ease;
+        }
+        .recipe-card:hover {
+            transform: translateY(-5px);
+        }
+        .recipe-title {
+            font-size: 20px;
+            font-weight: bold;
+            color: #333333;
+            margin-bottom: 10px;
+        }
+        .recipe-details {
+            font-size: 16px;
+            color: #666666;
+        }
+
+        /* Add Recipe button styling */
+        .add-recipe-btn {
+            background-color: #28a745;
+            color: #ffffff;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 5px;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 18px;
+            margin-top: 20px;
+            transition: background-color 0.3s ease;
+        }
+        .add-recipe-btn:hover {
+            background-color: #218838;
+        }
+
+        /* Gradient effect */
+        .gradient-bg {
+            background: linear-gradient(135deg, #f6d365 0%, #fda085 100%);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            text-align: center;
+            color: #ffffff;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .animated-text {
+            display: inline-block;
+            font-size: 24px;
+            color: #ffffff;
+            background-image: linear-gradient(45deg, #FFA500, #FF4500);
+            -webkit-background-clip: text;
+            background-clip: text;
+            animation: glowing 3s infinite alternate;
+        }
+        @keyframes glowing {
+            0% {
+                opacity: 0.5;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+        /* Responsive layout */
+        @media only screen and (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            .navbar {
+                padding: 10px 0;
+            }
+            .navbar h1 {
+                font-size: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <div class="navbar">
+        <div class="container">
+            <h1 class="animated-text">DilseFoodie</h1>
+        </div>
+    </div>
+
+    <!-- Main content -->
+    <div class="container">
+        <h2 class="gradient-bg">Recipe List</h2>
+        <div class="recipe-list">
+            {% for recipe in recipes %}
+                <div class="recipe-card">
+                    <h3 class="recipe-title">{{ recipe.title }}</h3>
+                    <p class="recipe-details"><strong>Ingredients:</strong> {{ recipe.ingredients }}</p>
+                    <p class="recipe-details"><strong>Instructions:</strong> {{ recipe.instructions }}</p>
+                </div>
+            {% endfor %}
+        </div>
+        <a href="{% url 'add_recipe' %}" class="add-recipe-btn">Add Recipe</a>
+    </div>
+</body>
+</html>
